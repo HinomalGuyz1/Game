@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="スペースシューティングゲーム - 敵を撃破してハイスコアを目指せ！">
+    <title>🚀 スペースシューター</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+
+<body>
+    <!-- HUD -->
+    <div class="hud">
+        <div class="hud__score">SCORE: <span id="score-value">0</span></div>
+        <div class="hud__lives" id="lives">♥♥♥</div>
+    </div>
+    <div class="combo" id="combo"></div>
+
+    <!-- Canvas -->
+    <canvas id="game-canvas"></canvas>
+
+    <!-- スタート画面 -->
+    <div class="screen-overlay" id="start-screen">
+        <div class="screen">
+            <h1 class="screen__title screen__title--main">SPACE<br>SHOOTER</h1>
+            <p class="screen__subtitle">敵を撃破してハイスコアを目指せ！</p>
+            <p class="screen__hiscore">HI-SCORE: <span id="hi-score-start">0</span></p>
+            <button class="screen__btn" id="start-btn">START</button>
+            <div class="screen__controls">
+                📱 タッチ: ドラッグで移動（自動射撃）<br>
+                ⌨️ キーボード: ← → で移動
+            </div>
+        </div>
+    </div>
+
+    <!-- ゲームオーバー画面 -->
+    <div class="screen-overlay" id="gameover-screen">
+        <div class="screen">
+            <h1 class="screen__title screen__title--gameover">GAME OVER</h1>
+            <p class="screen__score-label">SCORE</p>
+            <p class="screen__score" id="final-score">0</p>
+            <p class="screen__hiscore">HI-SCORE: <span id="hi-score">0</span></p>
+            <button class="screen__btn" id="restart-btn">RETRY</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { Game } from './src/game.js';
+        new Game(document.getElementById('game-canvas'));
+    </script>
+</body>
+
+</html>

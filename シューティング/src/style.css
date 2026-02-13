@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #0a0a14;
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    touch-action: none;
+}
+
+/* ============== Canvas ============== */
+#game-canvas {
+    display: block;
+    margin: 0 auto;
+    background: #0a0a14;
+    cursor: crosshair;
+}
+
+/* ============== HUD ============== */
+.hud {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.hud__score {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #e8e8f0;
+    text-shadow: 0 0 10px rgba(108, 99, 255, 0.5);
+}
+
+.hud__lives {
+    font-size: 1.2rem;
+    color: #FF6584;
+    text-shadow: 0 0 8px rgba(255, 101, 132, 0.5);
+    letter-spacing: 2px;
+}
+
+/* ============== Combo ============== */
+.combo {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Orbitron', monospace;
+    font-size: 1.4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 10;
+    text-shadow: none;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+}
+
+.combo.visible {
+    opacity: 1;
+    animation: comboPop 0.3s ease;
+}
+
+@keyframes comboPop {
+    0% {
+        transform: translateX(-50%) scale(1.5);
+    }
+
+    100% {
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+/* ============== Screens ============== */
+.screen-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    background: rgba(10, 10, 20, 0.85);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.screen-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.screen {
+    text-align: center;
+    padding: 40px 32px;
+    max-width: 340px;
+    width: 90%;
+}
+
+.screen__title {
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+}
+
+.screen__title--main {
+    background: linear-gradient(135deg, #6C63FF, #FF6584);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.screen__title--gameover {
+    color: #FF6584;
+}
+
+.screen__subtitle {
+    font-size: 0.9rem;
+    color: #a0a0c0;
+    margin-bottom: 32px;
+}
+
+.screen__score-label {
+    font-size: 0.8rem;
+    color: #a0a0c0;
+    margin-bottom: 4px;
+}
+
+.screen__score {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #FFD700;
+    margin-bottom: 4px;
+}
+
+.screen__hiscore {
+    font-size: 0.8rem;
+    color: #a0a0c0;
+    margin-bottom: 32px;
+}
+
+.screen__btn {
+    padding: 14px 40px;
+    background: linear-gradient(135deg, #6C63FF, #8B83FF);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 4px 20px rgba(108, 99, 255, 0.5);
+    letter-spacing: 0.05em;
+}
+
+.screen__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(108, 99, 255, 0.6);
+}
+
+.screen__btn:active {
+    transform: scale(0.96);
+}
+
+.screen__controls {
+    margin-top: 24px;
+    font-size: 0.75rem;
+    color: #666;
+    line-height: 1.8;
+}
